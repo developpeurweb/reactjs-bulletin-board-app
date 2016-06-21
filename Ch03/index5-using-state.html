@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://fb.me/react-0.13.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
+    <title>React Components using state</title>
+  </head>
+
+  <body>
+
+<!--   the problem here has been solved by using the defaultChecked attribute supported by React-->
+    <div id="react-container"></div>
+    <script type="text/babel">
+
+        var Checkbox = React.createClass({
+
+            getInitialState: function() {
+                return( {checked: true} );
+            },
+
+            handleChange: function() {
+                this.setState( {checked: !this.state.checked} );
+            },
+
+            render: function() {
+                var msg;
+                if(this.state.checked) {
+                    msg = "a winner";
+                }
+                else {
+                    msg = "nothing to see";
+                }
+
+                return( <div>
+                    <input type="checkbox" onChange={this.handleChange} defaultChecked={this.state.checked} />
+                    <p>Here we have {msg}</p>
+                </div> );
+            }
+
+        });
+
+        React.render( <Checkbox />
+            , document.getElementById('react-container')
+
+        );
+
+    </script>
+
+  </body>
+</html>
